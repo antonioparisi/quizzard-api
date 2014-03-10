@@ -15,8 +15,8 @@ production:
   encoding: utf8
   reconnect: true
   pool: 5
-  database: <%=ENV['OPENSHIFT_APP_NAME']%>
-  username: <%=ENV['OPENSHIFT_POSTGRESQL_DB_USERNAME']%>
-  password: <%=ENV['OPENSHIFT_POSTGRESQL_DB_PASSWORD']%>
-  host:   <%=ENV['OPENSHIFT_POSTGRESQL_DB_HOST']%>
-  port:   <%=ENV['OPENSHIFT_POSTGRESQL_DB_PORT']%>
+  database: 'dbcfll4u2d9ema'
+  username: 'sjpkafcmqewkrk'
+  password: 'kHEld7B4TJUVDNbzceG6snF7O2'
+  host: 'ec2-54-247-175-11.eu-west-1.compute.amazonaws.com'
+  port: 5432
