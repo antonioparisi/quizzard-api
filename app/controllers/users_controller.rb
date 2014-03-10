@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_action :authenticate!, :only => [:create]
+  skip_before_action :authenticate!, :only => [:create, :join]
 
   def create
     if !required_present?
@@ -24,7 +24,7 @@ class UsersController < ApplicationController
     Pusher['waitingRoom'].trigger('join', {
       message: {
         :picture => 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-frc3/t1/c0.0.320.320/p320x320/1509014_10202525550607447_385778307_n.jpg',
-        :fullname => current_user.fullname,
+        :fullname => 'Antonio Parisi',
         :score => 0
       }
     })
