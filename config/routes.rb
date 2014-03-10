@@ -12,5 +12,5 @@ QuizzardApi::Application.routes.draw do
     end
   end
 
-  match '*path', :to => 'cors#options', :via => [:post]
+  match '*path', :to => 'cors#options', :via => [:post, :get]
 end

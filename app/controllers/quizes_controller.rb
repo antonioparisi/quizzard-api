@@ -4,11 +4,11 @@ class QuizesController < ApplicationController
   def start
     questions = ActiveModel::ArraySerializer.new(Question.all, :each_serializer => QuestionSerializer).to_json
 
-    #Pusher['quiz'].trigger('start', {
-      #message: {
-        #questions: questions
-      #}
-    #})
+    Pusher['quiz'].trigger('start', {
+      message: {
+        questions: questions
+      }
+    })
   end
 
   def answer_correct
