@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_action :authenticate!, :only => [:create, :join]
+  skip_before_action :authenticate!, :only => [:create]
 
   def create
     if !required_present?
@@ -10,7 +10,8 @@ class UsersController < ApplicationController
     begin
       User.create!(user_params)
     rescue ActiveRecord::RecordNotUnique => not_unique
-      render :json => { :error => 'Email already taken' }, :status => 412
+      render :json => { :success => true }, :status => 200
+      #render :json => { :error => 'Email already taken' }, :status => 412
       return
     rescue => error
       render :json => { :error => error.message }, :status => 412
@@ -23,8 +24,9 @@ class UsersController < ApplicationController
   def join
     Pusher['waitingRoom'].trigger('join', {
       message: {
-        :picture => 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-frc3/t1/c0.0.320.320/p320x320/1509014_10202525550607447_385778307_n.jpg',
-        :fullname => 'Antonio Parisi',
+        :id => current_user.id,
+        :picture => current_user.picture,
+        :fullname => current_user.fullname,
         :score => 0
       }
     })

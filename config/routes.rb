@@ -2,6 +2,7 @@ QuizzardApi::Application.routes.draw do
   resources :quizes, :only => [] do
     collection do
       post :start
+      post :answer_correct
     end
   end
 
