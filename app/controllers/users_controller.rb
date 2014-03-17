@@ -10,8 +10,10 @@ class UsersController < ApplicationController
     begin
       User.create!(user_params)
     rescue ActiveRecord::RecordNotUnique => not_unique
+      user = User.find_by_email(params[:email])
+      user.update_attributes!(:access_token => params[:access_token])
+
       render :json => { :success => true }, :status => 200
-      #render :json => { :error => 'Email already taken' }, :status => 412
       return
     rescue => error
       render :json => { :error => error.message }, :status => 412

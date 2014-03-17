@@ -3,13 +3,15 @@ QuizzardApi::Application.routes.draw do
     collection do
       post :start
       post :answer_correct
+      post :next_question
+      get :rank
     end
   end
 
   resources :questions
   resources :users, :only => [:create] do
     collection do
-      get :join
+      post :join
     end
   end
 
